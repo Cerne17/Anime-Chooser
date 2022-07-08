@@ -1,4 +1,6 @@
-from random import choice
+from random import randint
+from time import sleep
+from jikanpy import Jikan
 
 '''
 This Program idea is to help people to choose an anime to watch when they aren't sure about which one to choose.
@@ -12,15 +14,15 @@ Side Quests:
     Create a visual interface.
 '''
 
-def main():
-    listOfAnimes = []
+print("\n\n~~~~Random Anime Picker~~~~\n\n")
 
-    print("~~~~Anime Picker~~~~\n\n")
-    numberOfInputs = int(input("Declare the number of animes to be sorted: \n"))
-    print("\n-----------------------")
-    for i in range(numberOfInputs):
-        listOfAnimes.append(str(input("Enter the name of the disired animes to be choosen: \n")))
-    print("You'll watch {}!! Have fun 😁😁".format(choice(listOfAnimes)))
+jikan = Jikan()
+animeCode = randint(0,4000)
+tempDict = jikan.anime(animeCode)
+title = tempDict["title"]
+titleJap = tempDict["title_japanese"]
 
-if __name__ == '__main__':
-    main()
+sleep(3)
+
+print("You'll watch \"{}\" / {}\n\n".format(title, titleJap))
+print("Have fun! 😁😁\n\n")
